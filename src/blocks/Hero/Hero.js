@@ -5,6 +5,8 @@ import withStyles from '@material-ui/core/styles/withStyles'
 import BackgroundMedia from '@oakwood/oui/BackgroundMedia'
 import Media from '@oakwood/oui/Media'
 import MediaReveal from '@oakwood/oui/MediaReveal'
+import RouterLink from 'containers/RouterLink'
+import Button from 'components/Button'
 import Container from 'components/Container'
 import Section from 'components/Section'
 import Typography from 'components/Typography'
@@ -48,7 +50,17 @@ export const styles = (theme) => ({
 })
 
 const Hero = React.forwardRef(function Hero(props, ref) {
-  const { classes, className, excerpt, heading, image, ...other } = props
+  const {
+    backgroundAttachment = 'static',
+    classes,
+    className,
+    ctaLabel,
+    ctaUrl,
+    excerpt,
+    heading,
+    image,
+    ...other
+  } = props
 
   return (
     <Section className={classnames(classes.root, className)} disableSpacing ref={ref} {...other}>
@@ -58,6 +70,7 @@ const Hero = React.forwardRef(function Hero(props, ref) {
             wrapperFixed: 'mui-fixed',
             wrapperSticky: classes.backgroundWrapperSticky,
           }}
+          attachment={backgroundAttachment}
         >
           <MediaReveal>
             <Media src={image.filename} lazy />
@@ -67,18 +80,33 @@ const Hero = React.forwardRef(function Hero(props, ref) {
 
       <Container className={classes.content} maxWidth="md">
         <Typography className={classes.heading} component="h1" variant="h2">
-          {props.heading}
+          {heading}
         </Typography>
 
         <Typography className={classes.excerpt}>{excerpt}</Typography>
+
+        {ctaUrl && (
+          <Button
+            className={classes.cta}
+            component={RouterLink}
+            href={ctaUrl}
+            color="inherit"
+            variant="outlined"
+          >
+            {ctaLabel}
+          </Button>
+        )}
       </Container>
     </Section>
   )
 })
 
 Hero.propTypes = {
+  backgroundAttachment: PropTypes.oneOf(['static', 'fixed', 'sticky']),
   classes: PropTypes.object.isRequired,
   className: PropTypes.string,
+  ctaLabel: PropTypes.string,
+  ctaUrl: PropTypes.string,
   excerpt: PropTypes.string,
   heading: PropTypes.string,
   image: PropTypes.string,
