@@ -5,9 +5,7 @@ import withStyles from '@material-ui/core/styles/withStyles'
 import BackgroundMedia from '@oakwood/oui/BackgroundMedia'
 import Media from '@oakwood/oui/Media'
 import MediaReveal from '@oakwood/oui/MediaReveal'
-import { mediaType } from 'utils'
-import RouterLink from 'containers/RouterLink'
-import Button from 'components/Button'
+import SbEditable from 'storyblok-react'
 import Container from 'components/Container'
 import Section from 'components/Section'
 import Typography from 'components/Typography'
@@ -51,72 +49,39 @@ export const styles = (theme) => ({
 })
 
 const Hero = React.forwardRef(function Hero(props, ref) {
-  const {
-    backgroundAttachment = 'static',
-    backgroundMediaProps,
-    classes,
-    className,
-    ctaLabel,
-    ctaUrl,
-    heading,
-    excerpt,
-    ...other
-  } = props
+  const { classes, className, heading, image, ...other } = props
 
   return (
-    <Section className={classnames(classes.root, className)} disableSpacing ref={ref} {...other}>
-      {backgroundMediaProps && (
-        <BackgroundMedia
-          classes={{
-            wrapperFixed: 'mui-fixed',
-            wrapperSticky: classes.backgroundWrapperSticky,
-          }}
-          attachment={backgroundAttachment}
-        >
-          <MediaReveal>
-            <Media
-              {...(backgroundMediaProps?.component === 'video'
-                ? { autoPlay: true, muted: true, loop: true, playsInline: true }
-                : {})}
-              {...backgroundMediaProps}
-              lazy
-            />
-          </MediaReveal>
-        </BackgroundMedia>
-      )}
-
-      <Container className={classes.content} maxWidth="md">
-        <Typography className={classes.heading} component="h1" variant="h2">
-          {heading}
-        </Typography>
-
-        <Typography className={classes.excerpt}>{excerpt}</Typography>
-
-        {ctaUrl && (
-          <Button
-            className={classes.cta}
-            component={RouterLink}
-            href={ctaUrl}
-            color="inherit"
-            variant="outlined"
+    <SbEditable content={props}>
+      <Section className={classnames(classes.root, className)} disableSpacing ref={ref} {...other}>
+        {image && (
+          <BackgroundMedia
+            classes={{
+              wrapperFixed: 'mui-fixed',
+              wrapperSticky: classes.backgroundWrapperSticky,
+            }}
           >
-            {ctaLabel}
-          </Button>
+            <MediaReveal>
+              <Media src={image.filename} lazy />
+            </MediaReveal>
+          </BackgroundMedia>
         )}
-      </Container>
-    </Section>
+
+        <Container className={classes.content} maxWidth="md">
+          <Typography className={classes.heading} component="h1" variant="h2">
+            {props.heading}
+          </Typography>
+        </Container>
+      </Section>
+    </SbEditable>
   )
 })
 
 Hero.propTypes = {
-  backgroundAttachment: PropTypes.oneOf(['static', 'fixed', 'sticky']),
-  backgroundMediaProps: mediaType,
   classes: PropTypes.object.isRequired,
   className: PropTypes.string,
-  ctaLabel: PropTypes.string,
-  ctaUrl: PropTypes.string,
-  excerpt: PropTypes.string,
   heading: PropTypes.string,
+  image: PropTypes.string,
 }
 
 export default withStyles(styles)(Hero)

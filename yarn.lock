@@ -10238,7 +10238,7 @@ qs@6.7.0:
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.7.0.tgz#41dc1a015e3d581f1621776be31afb2876a9b1bc"
   integrity sha512-VCdBRNFTX1fyE7Nb6FYoURo/SPe62QCaAyzJvUjwRaIsc+NePBEniHlvxFmmX56+HZphIGtV0XeCirBtpDrTyQ==
 
-qs@^6.6.0:
+qs@^6.6.0, qs@^6.9.4:
   version "6.9.4"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.9.4.tgz#9090b290d1f91728d3c22e54843ca44aea5ab687"
   integrity sha512-A1kFqHekCTM7cz0udomYUoYNWjBebHm/5wzU/XqrBRBNWectVH0QIiN+NEcZ0Dte5hvzHwbr8+XQmguPhJ6WdQ==
@@ -11554,6 +11554,18 @@ store2@^2.7.1:
   version "2.12.0"
   resolved "https://registry.yarnpkg.com/store2/-/store2-2.12.0.tgz#e1f1b7e1a59b6083b2596a8d067f6ee88fd4d3cf"
   integrity sha512-7t+/wpKLanLzSnQPX8WAcuLCCeuSHoWdQuh9SB3xD0kNOM38DNf+0Oa+wmvxmYueRzkmh6IcdKFtvTa+ecgPDw==
+
+storyblok-js-client@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/storyblok-js-client/-/storyblok-js-client-3.1.0.tgz#696600659147521f38a8c807ba4d93e20926c0d5"
+  integrity sha512-lPVT/7QvHV71TksEA589wfnZ6ou1LILJA6N6eCjTSLwNYSiojV36Qdo6tJ31qWrWglTt0BR2T32UtBCC/5UQww==
+  dependencies:
+    qs "^6.9.4"
+
+storyblok-react@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/storyblok-react/-/storyblok-react-0.1.1.tgz#3299aaa6c808e980f2547464deb9e15a63f88b32"
+  integrity sha512-/M620xSJQKBbDkxFQLG2zrTLXOxZG7ZcYjuaYlR9f7zMzSj+gFoQMXyMpJ2ASXI+MlhPXNnzrGk0a8hPF06YQg==
 
 stream-browserify@3.0.0:
   version "3.0.0"

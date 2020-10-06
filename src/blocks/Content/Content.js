@@ -2,6 +2,7 @@ import * as React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'clsx'
 import withStyles from '@material-ui/core/styles/withStyles'
+import StoryblokService from 'utils/storyblok-service'
 import Container from 'components/Container'
 import Html from 'components/Html'
 import Section from 'components/Section'
@@ -43,19 +44,14 @@ export const styles = {
 }
 
 const Content = React.forwardRef(function Content(props, ref) {
-  const { children, classes, className, content, ...other } = props
+  const { children, classes, className, content: contentProp, ...other } = props
 
-  const componentProps = {}
-  if (content) {
-    componentProps.dangerouslySetInnerHTML = { __html: content }
-  } else {
-    componentProps.children = children
-  }
+  const content = StoryblokService?.client?.richTextResolver?.render(contentProp)
 
   return (
     <Section className={classnames(classes.root, className)} ref={ref} {...other}>
       <Container className={classes.content} maxWidth="md">
-        <Html {...componentProps} />
+        <Html dangerouslySetInnerHTML={{ __html: content }} />
       </Container>
     </Section>
   )
