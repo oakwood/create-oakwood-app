@@ -5,7 +5,6 @@ import withStyles from '@material-ui/core/styles/withStyles'
 import BackgroundMedia from '@oakwood/oui/BackgroundMedia'
 import Media from '@oakwood/oui/Media'
 import MediaReveal from '@oakwood/oui/MediaReveal'
-import SbEditable from 'storyblok-react'
 import Container from 'components/Container'
 import Section from 'components/Section'
 import Typography from 'components/Typography'
@@ -49,37 +48,38 @@ export const styles = (theme) => ({
 })
 
 const Hero = React.forwardRef(function Hero(props, ref) {
-  const { classes, className, heading, image, ...other } = props
+  const { classes, className, excerpt, heading, image, ...other } = props
 
   return (
-    <SbEditable content={props}>
-      <Section className={classnames(classes.root, className)} disableSpacing ref={ref} {...other}>
-        {image && (
-          <BackgroundMedia
-            classes={{
-              wrapperFixed: 'mui-fixed',
-              wrapperSticky: classes.backgroundWrapperSticky,
-            }}
-          >
-            <MediaReveal>
-              <Media src={image.filename} lazy />
-            </MediaReveal>
-          </BackgroundMedia>
-        )}
+    <Section className={classnames(classes.root, className)} disableSpacing ref={ref} {...other}>
+      {image && (
+        <BackgroundMedia
+          classes={{
+            wrapperFixed: 'mui-fixed',
+            wrapperSticky: classes.backgroundWrapperSticky,
+          }}
+        >
+          <MediaReveal>
+            <Media src={image.filename} lazy />
+          </MediaReveal>
+        </BackgroundMedia>
+      )}
 
-        <Container className={classes.content} maxWidth="md">
-          <Typography className={classes.heading} component="h1" variant="h2">
-            {props.heading}
-          </Typography>
-        </Container>
-      </Section>
-    </SbEditable>
+      <Container className={classes.content} maxWidth="md">
+        <Typography className={classes.heading} component="h1" variant="h2">
+          {props.heading}
+        </Typography>
+
+        <Typography className={classes.excerpt}>{excerpt}</Typography>
+      </Container>
+    </Section>
   )
 })
 
 Hero.propTypes = {
   classes: PropTypes.object.isRequired,
   className: PropTypes.string,
+  excerpt: PropTypes.string,
   heading: PropTypes.string,
   image: PropTypes.string,
 }
