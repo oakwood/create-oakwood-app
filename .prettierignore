@@ -1,6 +1,9 @@
-.next/
-.storybook-static/
-node_modules/
-package-lock.json
+*.md
+/.git
+/.next
+/.storybook-static
+/coverage
+/tmp
+build
+node_modules
 yarn.lock
-package.json

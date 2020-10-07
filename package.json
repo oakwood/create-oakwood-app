@@ -27,7 +27,11 @@
     "lint:fix": "eslint . --cache --fix",
     "lint:staged": "lint-staged",
     "prettier": "prettier . --check",
-    "prettier:fix": "prettier . --write"
+    "prettier:fix": "prettier . --write",
+    "pretest": "yarn test:clean && yarn lint",
+    "test:clean": "rimraf ./coverage",
+    "test": "cross-env NODE_ENV=test jest --coverage",
+    "test:watch": "cross-env NODE_ENV=test jest --watchAll"
   },
   "lint-staged": {
     "*.js": [
@@ -42,7 +46,8 @@
   "pre-commit": "lint:staged",
   "dependencies": {
     "@material-ui/core": "4.11.0",
-    "@oakwood/oui": "0.11.0",
+    "@oakwood/oui": "^1.0.0-rc1",
+    "@oakwood/oui-utils": "^1.0.0-rc1",
     "clsx": "^1.1.0",
     "next": "^9.5.3",
     "prop-types": "^15.7.2",
@@ -54,19 +59,25 @@
   "devDependencies": {
     "@babel/plugin-transform-react-constant-elements": "^7.10.1",
     "@next/bundle-analyzer": "^9.5.3",
-    "@storybook/addon-essentials": "^6.0.26",
     "@storybook/addon-a11y": "^6.0.26",
+    "@storybook/addon-essentials": "^6.0.26",
     "@storybook/react": "^6.0.26",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.0.4",
     "@zeit/next-bundle-analyzer": "^0.1.2",
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.5",
     "babel-plugin-lodash": "^3.3.4",
     "babel-plugin-module-resolver": "^4.0.0",
     "babel-plugin-optimize-clsx": "^2.6.0",
+    "babel-plugin-react-remove-properties": "^0.3.0",
     "babel-plugin-transform-dev-warning": "^0.1.0",
     "babel-plugin-transform-imports": "^2.0.0",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.21",
     "chromatic": "^5.1.0",
+    "cross-env": "^7.0.0",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.5",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.1.0",
     "eslint-config-prettier": "^6.2.0",
@@ -76,9 +87,12 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.14.3",
     "eslint-plugin-react-hooks": "^2.1.1",
+    "jest-cli": "^26.4.2",
     "lint-staged": "^10.3.0",
     "next-transpile-modules": "^4.1.0",
     "pre-commit": "^1.2.2",
-    "prettier": "^2.0.1"
+    "prettier": "^2.0.1",
+    "react-test-renderer": "^16.13.1",
+    "rimraf": "^3.0.0"
   }
 }

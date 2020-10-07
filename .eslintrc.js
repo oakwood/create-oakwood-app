@@ -4,6 +4,7 @@ module.exports = {
     es6: true,
     browser: true,
     node: true,
+    jest: true,
   },
   extends: ['plugin:import/recommended', 'airbnb', 'prettier', 'prettier/react'],
   parser: 'babel-eslint',
