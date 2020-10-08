@@ -66,4 +66,4 @@ AppDrawer.propTypes = {
   PaperProps: PropTypes.object,
 }
 
-export default withStyles(styles)(React.memo(AppDrawer))
+export default withStyles(styles)(AppDrawer)

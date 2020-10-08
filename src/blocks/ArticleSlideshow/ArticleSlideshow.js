@@ -73,7 +73,7 @@ const ArticleSlideshow = React.forwardRef(function ArticleSlideshow(props, ref) 
       )}
 
       <Container className={classes.content} maxWidth={false}>
-        <Swiper className={classes.slideshow} slidesPerView="auto">
+        <Swiper className={classes.slideshow} centerInsufficientSlides slidesPerView="auto">
           {items?.map((item, idx) => (
             <SwiperSlide key={idx} className={classes.slide}>
               <article className={classes.card}>

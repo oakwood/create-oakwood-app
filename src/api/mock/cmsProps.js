@@ -1,58 +1,56 @@
-const url = 'https://material-ui.com/'
-
 export const menuPrimary = [
   {
     label: 'Work',
     links: Array.from(new Array(6), (_, idx) => {
       const link = {
         label: `Link ${idx + 1}`,
-        url,
+        url: `link-${idx + 1}`,
       }
 
       if (idx === 0) {
         link.links = Array.from(new Array(2), (__, idx2) => ({
           label: `Another link ${idx2 + 1}`,
-          url,
+          url: `sublink-${idx + 1}`,
         }))
       }
 
       return link
     }),
     mediaSrc: '//source.unsplash.com/300x200',
-    url,
+    url: '/work',
   },
   {
     label: 'News',
     mediaSrc: '//source.unsplash.com/300x201',
-    url,
+    url: '/news',
   },
   {
     label: 'Press',
     mediaSrc: '//source.unsplash.com/300x202',
-    url,
+    url: '/press',
   },
   {
     label: 'About',
-    url,
+    url: '/about',
   },
 ]
 
 export const menuFooter = [
   {
     label: 'Work',
-    url,
+    url: '/work',
   },
   {
     label: 'News',
-    url,
+    url: '/news',
   },
   {
     label: 'Press',
-    url,
+    url: '/press',
   },
   {
     label: 'About',
-    url,
+    url: '/about',
   },
 ]
 

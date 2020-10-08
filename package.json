@@ -18,7 +18,7 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start -p $PORT",
+    "start": "next start",
     "analyze": "ANALYZE=true next build",
     "storybook": "start-storybook -s ./public -p 3001 --ci",
     "build-storybook": "build-storybook -s ./public -o .storybook-static",
@@ -46,8 +46,7 @@
   "pre-commit": "lint:staged",
   "dependencies": {
     "@material-ui/core": "4.11.0",
-    "@oakwood/oui": "^1.0.0-rc1",
-    "@oakwood/oui-utils": "^1.0.0-rc1",
+    "@oakwood/oui": "1.0.0",
     "clsx": "^1.1.0",
     "next": "^9.5.3",
     "prop-types": "^15.7.2",
@@ -64,6 +63,7 @@
     "@storybook/react": "^6.0.26",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.0.4",
+    "@welldone-software/why-did-you-render": "^4.3.2",
     "@zeit/next-bundle-analyzer": "^0.1.2",
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.5",
@@ -71,7 +71,6 @@
     "babel-plugin-module-resolver": "^4.0.0",
     "babel-plugin-optimize-clsx": "^2.6.0",
     "babel-plugin-react-remove-properties": "^0.3.0",
-    "babel-plugin-transform-dev-warning": "^0.1.0",
     "babel-plugin-transform-imports": "^2.0.0",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.21",
     "chromatic": "^5.1.0",
@@ -81,7 +80,7 @@
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.1.0",
     "eslint-config-prettier": "^6.2.0",
-    "eslint-import-resolver-babel-module": "^5.1.0",
+    "eslint-import-resolver-webpack": "^0.12.0",
     "eslint-plugin-babel": "^5.3.0",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-jsx-a11y": "^6.2.3",
@@ -93,6 +92,7 @@
     "pre-commit": "^1.2.2",
     "prettier": "^2.0.1",
     "react-test-renderer": "^16.13.1",
-    "rimraf": "^3.0.0"
+    "rimraf": "^3.0.0",
+    "webpack-merge": "^5.2.0"
   }
 }

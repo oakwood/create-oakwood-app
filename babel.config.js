@@ -3,7 +3,6 @@ const defaultAlias = {
   blocks: './src/blocks',
   components: './src/components',
   containers: './src/containers',
-  src: './src',
   utils: './src/utils',
   test: './test',
 }
@@ -37,13 +36,6 @@ module.exports = {
     'babel-plugin-optimize-clsx',
     'babel-plugin-lodash',
     [
-      'babel-plugin-module-resolver',
-      {
-        root: ['./'],
-        alias: defaultAlias,
-      },
-    ],
-    [
       'babel-plugin-transform-imports',
       {
         '@material-ui/core': {
@@ -59,6 +51,29 @@ module.exports = {
     development: {},
     production: {
       plugins: productionPlugins,
+    },
+    coverage: {
+      plugins: [
+        [
+          'babel-plugin-module-resolver',
+          {
+            root: ['./'],
+            alias: defaultAlias,
+          },
+        ],
+      ],
+    },
+    test: {
+      sourceMaps: 'both',
+      plugins: [
+        [
+          'babel-plugin-module-resolver',
+          {
+            root: ['./'],
+            alias: defaultAlias,
+          },
+        ],
+      ],
     },
   },
 }

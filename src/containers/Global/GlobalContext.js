@@ -29,4 +29,4 @@ GlobalProvider.propTypes = {
   settings: PropTypes.object,
 }
 
-export default GlobalContext
+export default React.memo(GlobalContext)

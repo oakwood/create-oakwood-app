@@ -5,14 +5,34 @@ import PropTypes from 'prop-types'
 import Head from 'next/head'
 import { ThemeProvider } from '@material-ui/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
-import theme from 'src/theme.light'
 import { cmsProps as mockedCmsProps } from 'api/mock'
+import theme from 'utils/theme.light'
 import { AppProvider } from 'containers/App/AppContext'
 import { GlobalProvider } from 'containers/Global/GlobalContext'
 import AppBase from 'containers/App'
 // As of NextJS 9, all global css *must* be imported in pages/_app.js
 // https://github.com/zeit/next.js/blob/master/errors/css-global.md
 import 'swiper/swiper-bundle.min.css'
+
+/**
+ * Monkey patches React to notify you about avoidable re-renders.
+ * Based on: https://github.com/vercel/next.js/blob/canary/examples/with-why-did-you-render/pages/_app.js
+ */
+if (typeof window !== 'undefined' && process.env.NODE_ENV !== 'production') {
+  // eslint-disable-next-line global-require
+  const whyDidYouRender = require('@welldone-software/why-did-you-render')
+  whyDidYouRender(React, { trackAllPureComponents: true })
+}
+
+/**
+ * Initialize polyfills
+ * Based on: https://nextjs.org/docs/basic-features/supported-browsers-features#custom-polyfills
+ */
+if (typeof window !== 'undefined') {
+  // eslint-disable-next-line global-require
+  const smoothscroll = require('smoothscroll-polyfill')
+  smoothscroll.polyfill()
+}
 
 function App(props) {
   const { Component, pageProps, cmsProps } = props

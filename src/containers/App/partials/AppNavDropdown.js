@@ -79,8 +79,7 @@ const AppNavDropdown = React.forwardRef(function AppNavDropdown(props, ref) {
           const topLinkProps = {}
           if (menuItem.url) {
             topLinkProps.component = RouterLink
-            topLinkProps.as = menuItem.url
-            topLinkProps.href = '[...uri]'
+            topLinkProps.href = menuItem.url
           }
 
           return (
@@ -98,8 +97,7 @@ const AppNavDropdown = React.forwardRef(function AppNavDropdown(props, ref) {
                           <Link
                             className={classes.listItemLink}
                             component={RouterLink}
-                            as={subMenuItem.url}
-                            href="[...uri]"
+                            href={subMenuItem.url}
                             underline="hover"
                             variant="body1"
                           >
