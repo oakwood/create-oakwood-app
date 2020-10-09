@@ -14,7 +14,7 @@ import AppAppBar from './partials/AppAppBar'
 import AppCartDrawer from './partials/AppCartDrawer'
 import AppCookieBar from './partials/AppCookieBar'
 import AppFooter from './partials/AppFooter'
-import AppLoader from './partials/AppLoader'
+// import AppLoader from './partials/AppLoader'
 import AppNavDrawer from './partials/AppNavDrawer'
 import AppNavDropdown from './partials/AppNavDropdown'
 import AppSearchDrawer from './partials/AppSearchDrawer'
@@ -179,7 +179,7 @@ function App(props) {
       <AppSearchDrawer open={isSearchMenuOpen} />
       <AppCookieBar open={isCookieBarOpen} />
 
-      <AppLoader />
+      {/* <AppLoader /> */}
     </div>
   )
 }

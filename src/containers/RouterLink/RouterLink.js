@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Link from 'next/link'
 
 const RouterLink = React.forwardRef(function RouterLink(props, ref) {
-  const { as, children, external, href, replace, scroll, shallow, ...other } = props
+  const { as, children, external, href, replace, scroll = false, shallow, ...other } = props
 
   // Render as a regular `a` tag if external link.
   if (external || /^https?:\/\//.test(href)) {

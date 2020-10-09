@@ -3,6 +3,7 @@
 import * as React from 'react'
 import PropTypes from 'prop-types'
 import Head from 'next/head'
+import { AnimatePresence, motion } from 'framer-motion'
 import { ThemeProvider } from '@material-ui/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import { cmsProps as mockedCmsProps } from 'api/mock'
@@ -18,11 +19,11 @@ import 'swiper/swiper-bundle.min.css'
  * Monkey patches React to notify you about avoidable re-renders.
  * Based on: https://github.com/vercel/next.js/blob/canary/examples/with-why-did-you-render/pages/_app.js
  */
-if (typeof window !== 'undefined' && process.env.NODE_ENV !== 'production') {
-  // eslint-disable-next-line global-require
-  const whyDidYouRender = require('@welldone-software/why-did-you-render')
-  whyDidYouRender(React, { trackAllPureComponents: true })
-}
+// if (typeof window !== 'undefined' && process.env.NODE_ENV !== 'production') {
+//   // eslint-disable-next-line global-require
+//   const whyDidYouRender = require('@welldone-software/why-did-you-render')
+//   whyDidYouRender(React, { trackAllPureComponents: true })
+// }
 
 /**
  * Initialize polyfills
@@ -34,8 +35,36 @@ if (typeof window !== 'undefined') {
   smoothscroll.polyfill()
 }
 
+function PageTransition(props) {
+  // eslint-disable-next-line react/prop-types
+  const { children, ...other } = props
+
+  React.useEffect(() => {
+    return () => {
+      window.scrollTo(0, 0)
+    }
+  }, [])
+
+  return (
+    <motion.div
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      transition={{ ease: 'easeInOut', duration: 0.375 }}
+      variants={{
+        initial: { opacity: 0, y: 20 },
+        animate: { opacity: 1, y: 0 },
+        exit: { opacity: 0, y: -20 },
+      }}
+      {...other}
+    >
+      {children}
+    </motion.div>
+  )
+}
+
 function App(props) {
-  const { Component, pageProps, cmsProps } = props
+  const { Component, pageProps, cmsProps, router } = props
 
   React.useEffect(() => {
     // Remove the server-side injected CSS.
@@ -60,7 +89,11 @@ function App(props) {
       <GlobalProvider {...cmsProps}>
         <AppProvider>
           <AppBase>
-            <Component {...pageProps} />
+            <AnimatePresence exitBeforeEnter>
+              <PageTransition key={router.route}>
+                <Component {...pageProps} />
+              </PageTransition>
+            </AnimatePresence>
           </AppBase>
         </AppProvider>
       </GlobalProvider>
@@ -92,6 +125,7 @@ App.propTypes = {
   Component: PropTypes.elementType.isRequired,
   pageProps: PropTypes.object.isRequired,
   cmsProps: PropTypes.object.isRequired,
+  router: PropTypes.object.isRequired,
 }
 
 export default App

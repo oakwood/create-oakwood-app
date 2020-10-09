@@ -1,6 +1,7 @@
 import * as React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'clsx'
+import { motion } from 'framer-motion'
 import withStyles from '@material-ui/core/styles/withStyles'
 import BackgroundMedia from '@oakwood/oui/BackgroundMedia'
 import Media from '@oakwood/oui/Media'
@@ -27,13 +28,16 @@ export const styles = (theme) => ({
       minHeight: 650,
     },
   },
-  content: {},
+  backgroundMedia: {
+    backgroundColor: theme.palette.text.primary,
+  },
   backgroundWrapperSticky: {
     top: 'var(--coa-sticky-top)',
     '$root:first-child &': {
       top: 'var(--coa-initial-sticky-top)',
     },
   },
+  content: {},
   heading: theme.mixins.fluidType('sm', 'xl', 45, 132),
   excerpt: {
     ...theme.mixins.contain('sm'),
@@ -49,6 +53,30 @@ export const styles = (theme) => ({
     },
   },
 })
+
+const containerVariants = {
+  visible: {
+    opacity: 1,
+    transition: {
+      when: 'beforeChildren',
+      staggerChildren: 0.1,
+    },
+  },
+  hidden: {
+    opacity: 0,
+    transition: {
+      when: 'afterChildren',
+    },
+  },
+}
+
+const itemVariants = {
+  visible: { opacity: 1, y: 0 },
+  hidden: { opacity: 0, y: 40 },
+}
+
+const MotionButton = motion.custom(Button)
+const MotionTypography = motion.custom(Typography)
 
 const Hero = React.forwardRef(function Hero(props, ref) {
   const {
@@ -68,6 +96,7 @@ const Hero = React.forwardRef(function Hero(props, ref) {
       {backgroundMediaProps && (
         <BackgroundMedia
           classes={{
+            root: classes.backgroundMedia,
             wrapperFixed: 'mui-fixed',
             wrapperSticky: classes.backgroundWrapperSticky,
           }}
@@ -86,23 +115,33 @@ const Hero = React.forwardRef(function Hero(props, ref) {
       )}
 
       <Container className={classes.content} maxWidth="md">
-        <Typography className={classes.heading} component="h1" variant="h2">
-          {heading}
-        </Typography>
-
-        <Typography className={classes.excerpt}>{excerpt}</Typography>
-
-        {ctaUrl && (
-          <Button
-            className={classes.cta}
-            component={RouterLink}
-            href={ctaUrl}
-            color="inherit"
-            variant="outlined"
+        <motion.div initial="hidden" animate="visible" variants={containerVariants}>
+          <MotionTypography
+            className={classes.heading}
+            component="h1"
+            variant="h2"
+            variants={itemVariants}
           >
-            {ctaLabel}
-          </Button>
-        )}
+            {heading}
+          </MotionTypography>
+
+          <MotionTypography className={classes.excerpt} variants={itemVariants}>
+            {excerpt}
+          </MotionTypography>
+
+          {ctaUrl && (
+            <MotionButton
+              className={classes.cta}
+              component={RouterLink}
+              href={ctaUrl}
+              color="inherit"
+              variant="outlined"
+              variants={itemVariants}
+            >
+              {ctaLabel}
+            </MotionButton>
+          )}
+        </motion.div>
       </Container>
     </Section>
   )

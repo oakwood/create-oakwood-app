@@ -4,36 +4,36 @@ export default {
     backgroundMediaProps: {
       component: 'picture',
       breakpoints: {
-        xs: '//source.unsplash.com/360x715',
-        sm: '//source.unsplash.com/1440x650',
+        xs: '//source.unsplash.com/-f0YLss50Bs/1280x720',
+        sm: '//source.unsplash.com/-f0YLss50Bs/1920x1080',
       },
     },
     heading: 'Lorem ipsum dolor',
     excerpt:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In molestie varius viverra. Quisque urna tortor, bibendum ac quam a, bibendum fringilla nulla.',
     ctaLabel: 'Discover',
-    ctaUrl: 'https://material-ui.com',
+    ctaUrl: '/foo',
   },
   ArticleSlideshow: {
     heading: 'Generic Heading',
     items: Array.from(new Array(6), () => ({
       mediaProps: {
         component: 'img',
-        src: '//source.unsplash.com/500x700',
+        src: '//source.unsplash.com/wVjoNpcTHxM',
       },
       subheading: 'Vivamus',
       heading: 'Lorem ipsum dolor',
       excerpt:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In molestie varius viverra. Quisque urna tortor, bibendum ac quam a, bibendum fringilla nulla.',
-      url: 'https://material-ui.com/',
+      url: '/foo',
     })),
   },
   Media: {
     mediaProps: {
       component: 'picture',
       breakpoints: {
-        xs: '//source.unsplash.com/360x715',
-        sm: '//source.unsplash.com/1440x650',
+        xs: '//source.unsplash.com/v4e3JI7DDHI/1280x720',
+        sm: '//source.unsplash.com/v4e3JI7DDHI/1920x1080',
       },
     },
   },
@@ -64,8 +64,7 @@ export default {
         <p>”Morbi felis dui, tincidunt suscipit consectetur”</p>
       </blockquote>
       <figure>
-        <img src="//source.unsplash.com/1600x900" alt="" />
-
+        <img src="//source.unsplash.com/weekly" alt="" />
         <figcaption>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</figcaption>
       </figure>
       <h3>Header Level 3</h3>
@@ -74,7 +73,7 @@ export default {
         <li>Aliquam tincidunt mauris eu risus.</li>
       </ul>
       <h4>Header Level 4</h4>
-      <img src="//source.unsplash.com/648x861" alt="" />
+      <img src="//source.unsplash.com/daily" alt="" />
       <h5>Header Level 5</h5>
       <h6>Header Level 6</h6>
     `,
