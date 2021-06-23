@@ -155,7 +155,7 @@ const AppHeader = React.memo(function AppHeader(props) {
           aria-expanded={isNavMenuOpen}
           aria-label={t(__translationGroup)`Toggle main menu`}
         >
-          {isNavMenuOpen ? <CloseIcon /> : <MenuIcon />}
+          {isNavMenuOpen ? <CloseIcon /> : <MenuIcon style={{ background: 'red' }} />}
         </IconButton>
 
         <div className={classes.toolbarDesktopPush} />

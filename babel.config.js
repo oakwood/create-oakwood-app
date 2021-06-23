@@ -12,7 +12,7 @@ module.exports = function config(api) {
   const isServer = api.caller((caller) => caller && caller.isServer)
   const isCallerDevelopment = api.caller((caller) => caller && caller.isDev)
 
-  // console.log('*********')
+  // console.log('*********', isServer, isCallerDevelopment)
   // console.log('api', api)
   // console.log('env', api.env(console.log))
   // console.log('caller', api.caller(console.log))
@@ -30,6 +30,8 @@ module.exports = function config(api) {
           // Monkey patches React to notify you about avoidable re-renders.
           // Based on: https://github.com/vercel/next.js/tree/canary/examples/with-why-did-you-render
           'preset-react': {
+            runtime: 'automatic',
+            development: process.env.NODE_ENV === 'development',
             importSource:
               !isServer && isCallerDevelopment ? '@welldone-software/why-did-you-render' : 'react',
           },

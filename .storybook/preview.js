@@ -1,4 +1,4 @@
-// import '../scripts/wdyr'
+import '../scripts/wdyr'
 import ThemeProvider from '@material-ui/styles/ThemeProvider'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import { global } from 'api/mock'

@@ -1,6 +1,6 @@
 // Based on https://github.com/mui-org/material-ui/blob/master/examples/nextjs/pages/_app.js
 
-// import '../../scripts/wdyr'
+import '../../scripts/wdyr'
 import * as React from 'react'
 import PropTypes from 'prop-types'
 import Head from 'next/head'
