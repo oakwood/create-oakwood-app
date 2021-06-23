@@ -1,5 +1,6 @@
 // Based on https://github.com/mui-org/material-ui/blob/master/examples/nextjs/pages/_app.js
 
+// import '../../scripts/wdyr'
 import * as React from 'react'
 import PropTypes from 'prop-types'
 import Head from 'next/head'
@@ -10,16 +11,6 @@ import { CheckoutProvider, GlobalProvider, I18nProvider } from 'api'
 import theme from 'utils/theme.light'
 import { AppProvider } from 'containers/App/AppContext'
 import AppBase from 'containers/App'
-
-// Monkey patches React to notify you about avoidable re-renders.
-// Based on: https://github.com/vercel/next.js/tree/canary/examples/with-why-did-you-render
-if (process.env.NODE_ENV === 'development') {
-  if (typeof window !== 'undefined') {
-    // eslint-disable-next-line global-require
-    const whyDidYouRender = require('@welldone-software/why-did-you-render')
-    whyDidYouRender(React, { trackAllPureComponents: true })
-  }
-}
 
 // Initialize polyfills
 // Based on: https://github.com/vercel/next.js/blob/canary/examples/with-polyfills
