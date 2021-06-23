@@ -12,6 +12,11 @@ module.exports = function config(api) {
   const isServer = api.caller((caller) => caller && caller.isServer)
   const isCallerDevelopment = api.caller((caller) => caller && caller.isDev)
 
+  // console.log('*********')
+  // console.log('api', api)
+  // console.log('env', api.env(console.log))
+  // console.log('caller', api.caller(console.log))
+
   return {
     presets: [
       [
