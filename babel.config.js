@@ -1,12 +1,4 @@
-const productionPlugins = [
-  '@babel/plugin-transform-react-constant-elements',
-  [
-    'babel-plugin-transform-react-remove-prop-types',
-    {
-      mode: 'unsafe-wrap',
-    },
-  ],
-]
+const productionPlugins = ['@babel/plugin-transform-react-constant-elements']
 
 module.exports = function config(api) {
   const isServer = api.caller((caller) => caller && caller.isServer)
@@ -40,13 +32,6 @@ module.exports = function config(api) {
     ],
     plugins: [
       'babel-plugin-optimize-clsx',
-      'babel-plugin-lodash',
-      [
-        'babel-plugin-i18n-tag-translate',
-        {
-          groupDir: './src',
-        },
-      ],
       [
         'babel-plugin-transform-imports',
         {
@@ -56,6 +41,12 @@ module.exports = function config(api) {
             transform: '@material-ui/core/esm/${member}',
             preventFullImport: true,
           },
+        },
+      ],
+      [
+        'babel-plugin-i18n-tag-translate',
+        {
+          groupDir: './src',
         },
       ],
     ],
