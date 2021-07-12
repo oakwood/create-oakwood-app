@@ -42,7 +42,7 @@ const AppSearchDrawer = React.memo(function AppSearchDrawer(props) {
 
   const handleSubmit = React.useCallback((event) => {
     event.preventDefault()
-    Router.pushRoute(`/search/${valueRef.current}`).then(() => window.scrollTo(0, 0))
+    Router.push(`/search/${valueRef.current}`).then(() => window.scrollTo(0, 0))
   }, [])
 
   const submitButton = (
